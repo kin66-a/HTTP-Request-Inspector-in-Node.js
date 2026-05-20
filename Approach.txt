@@ -1,0 +1,64 @@
+
+1.Understand What You're Building
+- You're Making CLI tool - you run it from terminal, pass a URL, and it prints formatted
+    diagnosic info.
+- That's it NO UI, no server, just a Node.js script.
+
+
+
+2.Break Down the Requirements:
+Output:                       what it means technically.
+Status Code                     :response.Status
+All Headers                     :response.headers(iterable object)
+cookies                         :parse set-cookies from headers
+Redirect chain                  :Manual Following of 3xx response with redirect: 'manual'
+response Time                   :Date.now() before and after the fetch
+
+
+
+3.Know your Tools Before You write
+Two options for HTTP:
+    - node-fetch(npm package) - older, stable, Node 12+
+    - globalThis.fetch(build-in) - Available natively from Node 18+
+
+4.Set up The Project
+    - mkdir http-inspector 
+    - cd http-inspector
+    - npm init -y
+
+    ->If using native fetch(Node 18+), that's all .if you need node-fetch
+    - npm install node-fetch
+
+    ->Also create your file:
+    - touch inspector.js
+
+
+5. Plan the Code Structure Before Writing
+Sketch this out mentally (or on paper) before coding:
+Inspector.js:
+    -getInput()            ->read URL from process.argv[2]
+    -flollowRedirects()    ->manually chase 3xx, build redirect chain
+    -fetchWithTiming()      ->Wrap fetch in a timer
+    -parsecookies()         ->extract set-cookie header
+    -printFormatted()       ->print everything clean
+Separating concens like this keeps it readable and debuggable
+
+
+
+6.Think About Edge Cases
+Before you code, ask yourself:
+    - What if the user passes no URL? -> validate input, print usage hint
+    - what if the URL has no cookies? -> print "none" gracefully
+    - what if there are 0 redirects? -> still show the chain(just 1 item)
+    - what if fetch throws (bad domain, timeout)? -> wrap in try/catch
+
+
+
+7.Order of Implementation
+Do it in this order, test each step befor moving on:
+1. Basicfetch + status code - get the simplest thing working
+2. Headers - iterate and print
+3. Cookies - Parse from headers
+4. Response time - add the timer wrapper
+5. redirect chain - the trickiest part, save for last
+6. Formatting - Clean up output at the very end

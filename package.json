@@ -1,0 +1,25 @@
+{
+  "name": "http-request-inspector-in-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kin66-a/HTTP-Request-Inspector-in-Node.js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kin66-a/HTTP-Request-Inspector-in-Node.js/issues"
+  },
+  "homepage": "https://github.com/kin66-a/HTTP-Request-Inspector-in-Node.js#readme",
+  "dependencies": {
+    "meta-fetcher": "^3.1.1",
+    "node-fetch": "^3.3.2"
+  }
+}
